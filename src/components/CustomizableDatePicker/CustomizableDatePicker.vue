@@ -6,7 +6,7 @@ import MonthTable from "../../components/MonthTable";
 import {
   ICustomizableDatePickerEmits,
   ICustomizableDatePickerProps,
-} from "../../components/CustomizableDatePicker/CustomizableDatePicker.interface";
+} from "./CustomizableDatePicker.interface";
 
 const props = defineProps<ICustomizableDatePickerProps>();
 const emit = defineEmits<ICustomizableDatePickerEmits>();
@@ -115,6 +115,11 @@ const handleOnlyPick = (day: Day) => {
   }
   emit("update:modelValue", value.value);
 };
+
+defineExpose({
+  prev,
+  next,
+});
 </script>
 
 <template>
