@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
-import { Day, InputValue, Page, RangeValue } from "../../interfaces/Calendar";
+import {computed, onMounted, ref, watch} from "vue";
+import {Day, InputValue, Page, RangeValue} from "../../interfaces/Calendar";
 import MainHeader from "../../components/MainHeader";
 import MonthTable from "../../components/MonthTable";
 import {
@@ -30,19 +30,32 @@ watch(calendar, (cal) => {
 });
 const selectedFirstRange = ref<Date | null>(null);
 const currentHoveredDay = ref<Day | null>(null);
-const dateTables = computed<Page[]>(() => {
-  let tables: Page[] = [];
+const dateTables = ref<Page[]>([]);
+onMounted(() => {
   for (let monthIndex = 0; monthIndex < monthCount.value; monthIndex++) {
     const tableYear =
-      month.value + monthIndex > 11 ? year.value + 1 : year.value;
+        month.value + monthIndex > 11 ? year.value + 1 : year.value;
     const tableMonth =
-      month.value + monthIndex < 12
-        ? month.value + monthIndex
-        : (month.value + monthIndex) % 12;
-    tables.push({ year: tableYear, month: tableMonth });
+        month.value + monthIndex < 12
+            ? month.value + monthIndex
+            : (month.value + monthIndex) % 12;
+    dateTables.value.push({year: tableYear, month: tableMonth});
   }
-  return tables;
 });
+
+const appendMonth = () => {
+  const last = dateTables.value[dateTables.value.length - 1];
+  const year = last.month === 11 ? last.year + 1 : last.year;
+  const month = (last.month + 1) % 12;
+  dateTables.value.push({year, month});
+};
+
+const prependMonth = () => {
+  const first = dateTables.value[0];
+  const year = first.month === 0 ? first.year - 1 : first.year;
+  const month = first.month === 0 ? 11 : first.month - 1;
+  dateTables.value.unshift({year, month});
+};
 
 watch(value, () => {
   if (props.range && props.trackStart && !(value.value as RangeValue).end) {
@@ -90,8 +103,8 @@ const onInput = (val: InputValue) => {
 const onDayHover = (day: Day) => {
   currentHoveredDay.value = day;
   emit(
-    "day-hover",
-    calendar.value.getDate(day.year, day.month, day.dayInMonth)
+      "day-hover",
+      calendar.value.getDate(day.year, day.month, day.dayInMonth)
   );
 };
 const onDayClick = (day: Day) => {
@@ -119,6 +132,8 @@ const handleOnlyPick = (day: Day) => {
 defineExpose({
   prev,
   next,
+  appendMonth,
+  prependMonth,
 });
 </script>
 
@@ -126,48 +141,48 @@ defineExpose({
   <div class="customizable-date-picker-container">
     <MainHeader @next="next" @prev="prev">
       <template #header-next-button>
-        <slot name="header-next-button" />
+        <slot name="header-next-button"/>
       </template>
       <template #header-prev-button>
-        <slot name="header-prev-button" />
+        <slot name="header-prev-button"/>
       </template>
     </MainHeader>
     <div class="month-list">
       <MonthTable
-        v-for="dateTable in dateTables"
-        :key="dateTable.year.toString() + dateTable.month.toString()"
-        :year="dateTable.year"
-        :month="dateTable.month"
-        :calendar="calendar"
-        :value="value"
-        :range="range"
-        :selected-first-range="selectedFirstRange"
-        :current-hovered-day="currentHoveredDay"
-        :min="props.min"
-        :max="props.max"
-        :only-pick-day="props.range && !!props.onlyPick"
-        :unequal-range="props.unequalRange"
-        :monthCount="monthCount"
-        @day-click="onDayClick"
-        @day-hover="onDayHover"
-        @drag="onDrag"
-        @input="onInput"
+          v-for="dateTable in dateTables"
+          :key="dateTable.year.toString() + dateTable.month.toString()"
+          :year="dateTable.year"
+          :month="dateTable.month"
+          :calendar="calendar"
+          :value="value"
+          :range="range"
+          :selected-first-range="selectedFirstRange"
+          :current-hovered-day="currentHoveredDay"
+          :min="props.min"
+          :max="props.max"
+          :only-pick-day="props.range && !!props.onlyPick"
+          :unequal-range="props.unequalRange"
+          :monthCount="monthCount"
+          @day-click="onDayClick"
+          @day-hover="onDayHover"
+          @drag="onDrag"
+          @input="onInput"
       >
         <template #month-title="{ startMonthDate }">
-          <slot name="month-title" :startMonthDate="startMonthDate"></slot>
+          <slot name="month-title" :startMonthDate="startMonthDate"/>
         </template>
         <template #week-header>
-          <slot name="week-header"></slot>
+          <slot name="week-header"/>
         </template>
         <template #day-container="{ day, daysInMonth }">
           <slot
-            name="day-container"
-            :day="day"
-            :daysInMonth="daysInMonth"
-          ></slot>
+              name="day-container"
+              :day="day"
+              :daysInMonth="daysInMonth"
+          />
         </template>
         <template #day="{ day }">
-          <slot name="day" :day="day"></slot>
+          <slot name="day" :day="day"/>
         </template>
       </MonthTable>
     </div>
