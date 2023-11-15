@@ -39,8 +39,14 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
 }, {
     prev: () => void;
     next: () => void;
-    appendMonth: () => void;
-    prependMonth: () => void;
+    appendMonth: () => {
+        year: number;
+        month: number;
+    };
+    prependMonth: () => {
+        year: number;
+        month: number;
+    };
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "day-click": (day: Day) => void;
     "day-hover": (day: Date) => void;

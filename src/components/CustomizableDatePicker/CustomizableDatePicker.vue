@@ -62,6 +62,7 @@ const appendMonth = () => {
   const year = last.month === 11 ? last.year + 1 : last.year;
   const month = (last.month + 1) % 12;
   dateTables.value.push({year, month});
+  return { year, month };
 };
 
 const prependMonth = () => {
@@ -69,6 +70,7 @@ const prependMonth = () => {
   const year = first.month === 0 ? first.year - 1 : first.year;
   const month = first.month === 0 ? 11 : first.month - 1;
   dateTables.value.unshift({year, month});
+  return { year, month };
 };
 
 watch(value, () => {

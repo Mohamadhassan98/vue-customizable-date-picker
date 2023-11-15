@@ -22,10 +22,10 @@ const O = (u) => (T("data-v-c2869eef"), u = u(), E(), u), J = {
   __name: "MainHeader",
   emits: ["next", "prev"],
   setup(u, { emit: i }) {
-    return (e, r) => (m(), g("div", J, [
+    return (e, o) => (m(), g("div", J, [
       k("div", {
         class: "arrow-button next",
-        onClick: r[0] || (r[0] = (D) => i("next"))
+        onClick: o[0] || (o[0] = (D) => i("next"))
       }, [
         y(e.$slots, "header-next-button", {}, () => [
           K
@@ -33,7 +33,7 @@ const O = (u) => (T("data-v-c2869eef"), u = u(), E(), u), J = {
       ]),
       k("div", {
         class: "arrow-button prev",
-        onClick: r[1] || (r[1] = (D) => i("prev"))
+        onClick: o[1] || (o[1] = (D) => i("prev"))
       }, [
         y(e.$slots, "header-prev-button", {}, () => [
           Q
@@ -44,8 +44,8 @@ const O = (u) => (T("data-v-c2869eef"), u = u(), E(), u), J = {
 });
 const F = (u, i) => {
   const e = u.__vccOpts || u;
-  for (const [r, D] of i)
-    e[r] = D;
+  for (const [o, D] of i)
+    e[o] = D;
   return e;
 }, X = /* @__PURE__ */ F(U, [["__scopeId", "data-v-c2869eef"]]), ee = { class: "week-days-container" }, te = /* @__PURE__ */ H({
   __name: "WeekHeader",
@@ -54,8 +54,8 @@ const F = (u, i) => {
   },
   setup(u) {
     const i = u, e = v(() => i.calendar.weekdaysMin);
-    return (r, D) => (m(), g("div", ee, [
-      (m(!0), g(x, null, B(e.value, (d, _) => y(r.$slots, "week-day", { day: d }, () => [
+    return (o, D) => (m(), g("div", ee, [
+      (m(!0), g(x, null, B(e.value, (d, _) => y(o.$slots, "week-day", { day: d }, () => [
         (m(), g("div", {
           key: `week-day-${_}`,
           class: "week-day-container"
@@ -64,7 +64,7 @@ const F = (u, i) => {
     ]));
   }
 });
-const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { class: "month-title" }, re = { class: "month-days-container" }, se = ["onClick", "onMouseenter"], oe = /* @__PURE__ */ H({
+const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { class: "month-title" }, re = { class: "month-days-container" }, oe = ["onClick", "onMouseenter"], se = /* @__PURE__ */ H({
   __name: "MonthTable",
   props: {
     value: {},
@@ -82,21 +82,21 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
   },
   emits: ["day-click", "day-hover", "drag", "input"],
   setup(u, { emit: i }) {
-    const e = u, r = v(
+    const e = u, o = v(
       () => `${e.calendar.months[e.month]} ${e.year}`
     ), D = v(
       () => e.calendar.daysInMonth(e.month, e.year)
     ), d = v(
-      () => new Array(D.value).fill(0).map((a, n) => ({
-        dayInMonth: n + 1,
+      () => new Array(D.value).fill(0).map((a, r) => ({
+        dayInMonth: r + 1,
         month: e.month,
         year: e.year,
         dayInWeek: e.calendar.getDayInWeek(
-          e.calendar.getDate(e.year, e.month, n + 1)
+          e.calendar.getDate(e.year, e.month, r + 1)
         ),
         today: e.calendar.isSame(
           /* @__PURE__ */ new Date(),
-          e.calendar.getDate(e.year, e.month, n + 1)
+          e.calendar.getDate(e.year, e.month, r + 1)
         )
       }))
     ), _ = v(
@@ -104,19 +104,19 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
     ), I = v(
       () => d.value.map((a) => P(a.dayInMonth))
     ), h = v(() => d.value.map((a) => {
-      const { start: n, end: o, isSelected: M } = C(a.dayInMonth);
+      const { start: r, end: s, isSelected: M } = C(a.dayInMonth);
       return {
         isSelected: M,
-        startRange: n,
-        endRange: o
+        startRange: r,
+        endRange: s
       };
-    })), c = v(() => d.value.map((a, n) => ({
+    })), c = v(() => d.value.map((a, r) => ({
       ...a,
-      isSelected: h.value[n].isSelected,
-      startRange: h.value[n].startRange,
-      endRange: h.value[n].endRange,
-      isBetween: I.value[n],
-      disabled: _.value[n]
+      isSelected: h.value[r].isSelected,
+      startRange: h.value[r].startRange,
+      endRange: h.value[r].endRange,
+      isBetween: I.value[r],
+      disabled: _.value[r]
     }))), w = v(
       () => (e.calendar.firstDayInMonth(e.month, e.year) - e.calendar.startDayWeek + 7) % 7
     ), b = v(() => e.currentHoveredDay ? e.calendar.getDate(
@@ -126,14 +126,14 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
     ) : null), f = v(
       () => e.calendar.getDate(e.year, e.month, 1)
     ), L = (a) => {
-      let n = !1, o = !1;
-      return e.min && (n = e.calendar.isAfter(
+      let r = !1, s = !1;
+      return e.min && (r = e.calendar.isAfter(
         e.min,
         e.calendar.getDate(e.year, e.month, a)
-      )), e.max && (o = e.calendar.isAfter(
+      )), e.max && (s = e.calendar.isAfter(
         e.calendar.getDate(e.year, e.month, a),
         e.max
-      )), n || o;
+      )), r || s;
     }, P = (a) => e.range ? e.selectedFirstRange && b.value ? e.calendar.isAfter(b.value, e.selectedFirstRange) ? e.calendar.isBetween(
       e.calendar.getDate(e.year, e.month, a),
       e.selectedFirstRange,
@@ -143,25 +143,25 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
       e.value.start,
       e.value.end
     ) : !1 : !1, C = (a) => {
-      const n = e.calendar.getDate(e.year, e.month, a);
+      const r = e.calendar.getDate(e.year, e.month, a);
       if (e.range) {
-        const o = e.value;
+        const s = e.value;
         if (e.selectedFirstRange) {
           const l = e.calendar.isSame(
             e.selectedFirstRange,
-            n
+            r
           );
-          let s = !1, p = !1;
-          return b.value && (s = e.calendar.isSame(b.value, n), p = e.calendar.isAfter(
+          let n = !1, p = !1;
+          return b.value && (n = e.calendar.isSame(b.value, r), p = e.calendar.isAfter(
             b.value,
             e.selectedFirstRange
           )), {
             isSelected: l,
             start: p && l,
-            end: p && s
+            end: p && n
           };
         }
-        const M = o.start ? e.calendar.isSame(o.start, n) : !1, t = o.end ? e.calendar.isSame(o.end, n) : !1;
+        const M = s.start ? e.calendar.isSame(s.start, r) : !1, t = s.end ? e.calendar.isSame(s.end, r) : !1;
         return {
           isSelected: M || t,
           start: M,
@@ -169,7 +169,7 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
         };
       } else
         return {
-          isSelected: e.calendar.isSame(e.value, n),
+          isSelected: e.calendar.isSame(e.value, r),
           start: !1,
           end: !1
         };
@@ -183,15 +183,15 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
       }), !e.onlyPickDay))
         if (e.range)
           if (e.selectedFirstRange) {
-            const n = e.calendar.getDate(
+            const r = e.calendar.getDate(
               e.year,
               e.month,
               a.dayInMonth
             );
-            e.calendar.isAfter(n, e.selectedFirstRange) || !e.unequalRange && e.calendar.isSame(n, e.selectedFirstRange) ? i("input", {
+            e.calendar.isAfter(r, e.selectedFirstRange) || !e.unequalRange && e.calendar.isSame(r, e.selectedFirstRange) ? i("input", {
               start: e.selectedFirstRange,
-              end: n
-            }) : i("drag", n);
+              end: r
+            }) : i("drag", r);
           } else
             i(
               "drag",
@@ -203,48 +203,48 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
             e.calendar.getDate(e.year, e.month, a.dayInMonth)
           );
     };
-    return (a, n) => (m(), g("div", {
+    return (a, r) => (m(), g("div", {
       class: N(["month-table-container", { single: e.monthCount === 1 }])
     }, [
       y(a.$slots, "month-title", { startMonthDate: f.value }, () => [
-        k("div", ne, z(r.value), 1)
+        k("div", ne, z(o.value), 1)
       ], !0),
       y(a.$slots, "week-header", {}, () => [
         Y(W(ae), { calendar: a.calendar }, null, 8, ["calendar"])
       ], !0),
       k("div", re, [
-        (m(!0), g(x, null, B(w.value, (o) => (m(), g("div", {
-          key: `empty-${o}`,
+        (m(!0), g(x, null, B(w.value, (s) => (m(), g("div", {
+          key: `empty-${s}`,
           class: "main-day-wrapper empty"
         }))), 128)),
-        (m(!0), g(x, null, B(c.value, (o) => (m(), g("div", {
-          key: o.dayInMonth,
+        (m(!0), g(x, null, B(c.value, (s) => (m(), g("div", {
+          key: s.dayInMonth,
           class: "main-day-wrapper",
-          onClick: (M) => V(o),
-          onMouseenter: (M) => R(o)
+          onClick: (M) => V(s),
+          onMouseenter: (M) => R(s)
         }, [
           y(a.$slots, "day-container", {
-            day: o,
+            day: s,
             daysInMonth: D.value
           }, () => [
             k("div", {
               class: N(["main-day-container", {
-                selected: o.isSelected,
-                between: o.isBetween,
-                disable: o.disabled
+                selected: s.isSelected,
+                between: s.isBetween,
+                disable: s.disabled
               }])
             }, [
-              y(a.$slots, "day", { day: o }, () => [
-                Z(z(o.dayInMonth), 1)
+              y(a.$slots, "day", { day: s }, () => [
+                Z(z(s.dayInMonth), 1)
               ], !0)
             ], 2)
           ], !0)
-        ], 40, se))), 128))
+        ], 40, oe))), 128))
       ])
     ], 2));
   }
 });
-const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { class: "customizable-date-picker-container" }, de = { class: "month-list" }, ue = /* @__PURE__ */ H({
+const le = /* @__PURE__ */ F(se, [["__scopeId", "data-v-abb03691"]]), ce = { class: "customizable-date-picker-container" }, de = { class: "month-list" }, ue = /* @__PURE__ */ H({
   __name: "CustomizableDatePicker",
   props: {
     calendars: {},
@@ -262,40 +262,40 @@ const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { cla
   },
   emits: ["day-click", "day-hover", "drag", "page-change", "update:modelValue"],
   setup(u, { expose: i, emit: e }) {
-    const r = u, D = v(() => r.currentCalendar ?? 0), d = v(() => r.calendars[D.value]), _ = v({
+    const o = u, D = v(() => o.currentCalendar ?? 0), d = v(() => o.calendars[D.value]), _ = v({
       get() {
-        return r.modelValue;
+        return o.modelValue;
       },
       set(t) {
         e("update:modelValue", t);
       }
-    }), I = v(() => r.monthCount ?? 1), h = S(d.value.currentYear), c = S(d.value.currentMonth);
+    }), I = v(() => o.monthCount ?? 1), h = S(d.value.currentYear), c = S(d.value.currentMonth);
     q(d, (t) => {
       h.value = t.currentYear, c.value = t.currentMonth;
     });
     const w = S(null), b = S(null), f = S([]);
     j(() => {
       for (let t = 0; t < I.value; t++) {
-        const l = c.value + t > 11 ? h.value + 1 : h.value, s = c.value + t < 12 ? c.value + t : (c.value + t) % 12;
-        f.value.push({ year: l, month: s });
+        const l = c.value + t > 11 ? h.value + 1 : h.value, n = c.value + t < 12 ? c.value + t : (c.value + t) % 12;
+        f.value.push({ year: l, month: n });
       }
     }), q(I, (t) => {
       const l = [];
-      for (let s = 0; s < t; s++) {
-        const p = c.value + s > 11 ? h.value + 1 : h.value, A = c.value + s < 12 ? c.value + s : (c.value + s) % 12;
+      for (let n = 0; n < t; n++) {
+        const p = c.value + n > 11 ? h.value + 1 : h.value, A = c.value + n < 12 ? c.value + n : (c.value + n) % 12;
         l.push({ year: p, month: A });
       }
       f.value = l;
     });
     const L = () => {
-      const t = f.value[f.value.length - 1], l = t.month === 11 ? t.year + 1 : t.year, s = (t.month + 1) % 12;
-      f.value.push({ year: l, month: s });
+      const t = f.value[f.value.length - 1], l = t.month === 11 ? t.year + 1 : t.year, n = (t.month + 1) % 12;
+      return f.value.push({ year: l, month: n }), { year: l, month: n };
     }, P = () => {
-      const t = f.value[0], l = t.month === 0 ? t.year - 1 : t.year, s = t.month === 0 ? 11 : t.month - 1;
-      f.value.unshift({ year: l, month: s });
+      const t = f.value[0], l = t.month === 0 ? t.year - 1 : t.year, n = t.month === 0 ? 11 : t.month - 1;
+      return f.value.unshift({ year: l, month: n }), { year: l, month: n };
     };
     q(_, () => {
-      r.range && r.trackStart && !_.value.end && (w.value = _.value.start);
+      o.range && o.trackStart && !_.value.end && (w.value = _.value.start);
     });
     const C = () => {
       c.value + 1 <= 11 ? c.value++ : (c.value = 0, h.value++), e("page-change", {
@@ -309,23 +309,23 @@ const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { cla
       });
     }, V = (t) => {
       e("update:modelValue", {
-        start: r.trackStart ? t : null,
+        start: o.trackStart ? t : null,
         end: null
       }), e("drag"), w.value = t;
     }, a = (t) => {
       w.value = null, e("update:modelValue", t);
-    }, n = (t) => {
+    }, r = (t) => {
       b.value = t, e(
         "day-hover",
         d.value.getDate(t.year, t.month, t.dayInMonth)
       );
-    }, o = (t) => {
+    }, s = (t) => {
       e("day-click", t), M(t);
     }, M = (t) => {
-      if (!r.onlyPick || !r.range)
+      if (!o.onlyPick || !o.range)
         return;
-      const l = _.value || {}, s = d.value.getDate(t.year, t.month, t.dayInMonth);
-      r.onlyPick === "start" ? (l.end && d.value.isAfter(s, l.end) && (l.end = s), l.start = s) : r.onlyPick === "end" && (l.start && d.value.isAfter(l.start, s) && (l.start = s), l.end = s), e("update:modelValue", _.value);
+      const l = _.value || {}, n = d.value.getDate(t.year, t.month, t.dayInMonth);
+      o.onlyPick === "start" ? (l.end && d.value.isAfter(n, l.end) && (l.end = n), l.start = n) : o.onlyPick === "end" && (l.start && d.value.isAfter(l.start, n) && (l.start = n), l.end = n), e("update:modelValue", _.value);
     };
     return i({
       prev: R,
@@ -346,22 +346,22 @@ const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { cla
         _: 3
       }),
       k("div", de, [
-        (m(!0), g(x, null, B(f.value, (s) => (m(), G(W(le), {
-          key: s.year.toString() + s.month.toString(),
-          year: s.year,
-          month: s.month,
+        (m(!0), g(x, null, B(f.value, (n) => (m(), G(W(le), {
+          key: n.year.toString() + n.month.toString(),
+          year: n.year,
+          month: n.month,
           calendar: d.value,
           value: _.value,
           range: t.range,
           "selected-first-range": w.value,
           "current-hovered-day": b.value,
-          min: r.min,
-          max: r.max,
-          "only-pick-day": r.range && !!r.onlyPick,
-          "unequal-range": r.unequalRange,
+          min: o.min,
+          max: o.max,
+          "only-pick-day": o.range && !!o.onlyPick,
+          "unequal-range": o.unequalRange,
           monthCount: I.value,
-          onDayClick: o,
-          onDayHover: n,
+          onDayClick: s,
+          onDayHover: r,
           onDrag: V,
           onInput: a
         }, {
@@ -386,7 +386,7 @@ const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { cla
     ]));
   }
 });
-const ie = /* @__PURE__ */ F(ue, [["__scopeId", "data-v-a0648961"]]), he = {
+const ie = /* @__PURE__ */ F(ue, [["__scopeId", "data-v-10f42a99"]]), he = {
   install: (u) => {
     u.component("VCustomizableDatePicker", ie);
   }
