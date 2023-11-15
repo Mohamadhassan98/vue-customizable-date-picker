@@ -1,65 +1,65 @@
-import { defineComponent as H, openBlock as y, createElementBlock as p, createElementVNode as _, renderSlot as h, pushScopeId as Y, popScopeId as E, computed as v, Fragment as x, renderList as B, toDisplayString as A, normalizeClass as z, createVNode as N, unref as q, createTextVNode as Z, ref as I, watch as W, onMounted as j, withCtx as $, createBlock as G } from "vue";
-const O = (d) => (Y("data-v-c2869eef"), d = d(), E(), d), J = {
+import { defineComponent as H, openBlock as m, createElementBlock as g, createElementVNode as k, renderSlot as y, pushScopeId as T, popScopeId as E, computed as v, Fragment as x, renderList as B, toDisplayString as z, normalizeClass as N, createVNode as Y, unref as W, createTextVNode as Z, ref as S, watch as q, onMounted as j, withCtx as $, createBlock as G } from "vue";
+const O = (u) => (T("data-v-c2869eef"), u = u(), E(), u), J = {
   dir: "ltr",
   class: "main-header-container"
-}, K = /* @__PURE__ */ O(() => /* @__PURE__ */ _("svg", {
+}, K = /* @__PURE__ */ O(() => /* @__PURE__ */ k("svg", {
   width: "12",
   height: "12",
   viewBox: "0 0 8 12",
   fill: "currentColor",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ _("path", { d: "M7.41016 1.41L2.83016 6L7.41016 10.59L6.00016 12L0.00015614 6L6.00016 -6.16331e-08L7.41016 1.41Z" })
-], -1)), Q = /* @__PURE__ */ O(() => /* @__PURE__ */ _("svg", {
+  /* @__PURE__ */ k("path", { d: "M7.41016 1.41L2.83016 6L7.41016 10.59L6.00016 12L0.00015614 6L6.00016 -6.16331e-08L7.41016 1.41Z" })
+], -1)), Q = /* @__PURE__ */ O(() => /* @__PURE__ */ k("svg", {
   width: "12",
   height: "12",
   viewBox: "0 0 8 12",
   fill: "currentColor",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ _("path", { d: "M0.589844 10.59L5.16984 6L0.589843 1.41L1.99984 -6.16331e-08L7.99984 6L1.99984 12L0.589844 10.59Z" })
+  /* @__PURE__ */ k("path", { d: "M0.589844 10.59L5.16984 6L0.589843 1.41L1.99984 -6.16331e-08L7.99984 6L1.99984 12L0.589844 10.59Z" })
 ], -1)), U = /* @__PURE__ */ H({
   __name: "MainHeader",
   emits: ["next", "prev"],
-  setup(d, { emit: u }) {
-    return (e, r) => (y(), p("div", J, [
-      _("div", {
+  setup(u, { emit: i }) {
+    return (e, r) => (m(), g("div", J, [
+      k("div", {
         class: "arrow-button next",
-        onClick: r[0] || (r[0] = (f) => u("next"))
+        onClick: r[0] || (r[0] = (D) => i("next"))
       }, [
-        h(e.$slots, "header-next-button", {}, () => [
+        y(e.$slots, "header-next-button", {}, () => [
           K
         ], !0)
       ]),
-      _("div", {
+      k("div", {
         class: "arrow-button prev",
-        onClick: r[1] || (r[1] = (f) => u("prev"))
+        onClick: r[1] || (r[1] = (D) => i("prev"))
       }, [
-        h(e.$slots, "header-prev-button", {}, () => [
+        y(e.$slots, "header-prev-button", {}, () => [
           Q
         ], !0)
       ])
     ]));
   }
 });
-const F = (d, u) => {
-  const e = d.__vccOpts || d;
-  for (const [r, f] of u)
-    e[r] = f;
+const F = (u, i) => {
+  const e = u.__vccOpts || u;
+  for (const [r, D] of i)
+    e[r] = D;
   return e;
 }, X = /* @__PURE__ */ F(U, [["__scopeId", "data-v-c2869eef"]]), ee = { class: "week-days-container" }, te = /* @__PURE__ */ H({
   __name: "WeekHeader",
   props: {
     calendar: {}
   },
-  setup(d) {
-    const u = d, e = v(() => u.calendar.weekdaysMin);
-    return (r, f) => (y(), p("div", ee, [
-      (y(!0), p(x, null, B(e.value, (c, g) => h(r.$slots, "week-day", { day: c }, () => [
-        (y(), p("div", {
-          key: `week-day-${g}`,
+  setup(u) {
+    const i = u, e = v(() => i.calendar.weekdaysMin);
+    return (r, D) => (m(), g("div", ee, [
+      (m(!0), g(x, null, B(e.value, (d, _) => y(r.$slots, "week-day", { day: d }, () => [
+        (m(), g("div", {
+          key: `week-day-${_}`,
           class: "week-day-container"
-        }, A(c), 1))
+        }, z(d), 1))
       ], !0)), 256))
     ]));
   }
@@ -81,13 +81,13 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
     monthCount: {}
   },
   emits: ["day-click", "day-hover", "drag", "input"],
-  setup(d, { emit: u }) {
-    const e = d, r = v(
+  setup(u, { emit: i }) {
+    const e = u, r = v(
       () => `${e.calendar.months[e.month]} ${e.year}`
-    ), f = v(
+    ), D = v(
       () => e.calendar.daysInMonth(e.month, e.year)
-    ), c = v(
-      () => new Array(f.value).fill(0).map((a, n) => ({
+    ), d = v(
+      () => new Array(D.value).fill(0).map((a, n) => ({
         dayInMonth: n + 1,
         month: e.month,
         year: e.year,
@@ -99,45 +99,45 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
           e.calendar.getDate(e.year, e.month, n + 1)
         )
       }))
-    ), g = v(
-      () => c.value.map((a) => L(a.dayInMonth))
-    ), S = v(
-      () => c.value.map((a) => P(a.dayInMonth))
-    ), m = v(() => c.value.map((a) => {
-      const { start: n, end: s, isSelected: w } = C(a.dayInMonth);
+    ), _ = v(
+      () => d.value.map((a) => L(a.dayInMonth))
+    ), I = v(
+      () => d.value.map((a) => P(a.dayInMonth))
+    ), h = v(() => d.value.map((a) => {
+      const { start: n, end: o, isSelected: M } = C(a.dayInMonth);
       return {
-        isSelected: w,
+        isSelected: M,
         startRange: n,
-        endRange: s
+        endRange: o
       };
-    })), i = v(() => c.value.map((a, n) => ({
+    })), c = v(() => d.value.map((a, n) => ({
       ...a,
-      isSelected: m.value[n].isSelected,
-      startRange: m.value[n].startRange,
-      endRange: m.value[n].endRange,
-      isBetween: S.value[n],
-      disabled: g.value[n]
-    }))), M = v(
+      isSelected: h.value[n].isSelected,
+      startRange: h.value[n].startRange,
+      endRange: h.value[n].endRange,
+      isBetween: I.value[n],
+      disabled: _.value[n]
+    }))), w = v(
       () => (e.calendar.firstDayInMonth(e.month, e.year) - e.calendar.startDayWeek + 7) % 7
-    ), k = v(() => e.currentHoveredDay ? e.calendar.getDate(
+    ), b = v(() => e.currentHoveredDay ? e.calendar.getDate(
       e.currentHoveredDay.year,
       e.currentHoveredDay.month,
       e.currentHoveredDay.dayInMonth
-    ) : null), D = v(
+    ) : null), f = v(
       () => e.calendar.getDate(e.year, e.month, 1)
     ), L = (a) => {
-      let n = !1, s = !1;
+      let n = !1, o = !1;
       return e.min && (n = e.calendar.isAfter(
         e.min,
         e.calendar.getDate(e.year, e.month, a)
-      )), e.max && (s = e.calendar.isAfter(
+      )), e.max && (o = e.calendar.isAfter(
         e.calendar.getDate(e.year, e.month, a),
         e.max
-      )), n || s;
-    }, P = (a) => e.range ? e.selectedFirstRange && k.value ? e.calendar.isAfter(k.value, e.selectedFirstRange) ? e.calendar.isBetween(
+      )), n || o;
+    }, P = (a) => e.range ? e.selectedFirstRange && b.value ? e.calendar.isAfter(b.value, e.selectedFirstRange) ? e.calendar.isBetween(
       e.calendar.getDate(e.year, e.month, a),
       e.selectedFirstRange,
-      k.value
+      b.value
     ) : !1 : e.value.start && e.value.end ? e.calendar.isBetween(
       e.calendar.getDate(e.year, e.month, a),
       e.value.start,
@@ -145,26 +145,26 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
     ) : !1 : !1, C = (a) => {
       const n = e.calendar.getDate(e.year, e.month, a);
       if (e.range) {
-        const s = e.value;
+        const o = e.value;
         if (e.selectedFirstRange) {
           const l = e.calendar.isSame(
             e.selectedFirstRange,
             n
           );
-          let o = !1, b = !1;
-          return k.value && (o = e.calendar.isSame(k.value, n), b = e.calendar.isAfter(
-            k.value,
+          let s = !1, p = !1;
+          return b.value && (s = e.calendar.isSame(b.value, n), p = e.calendar.isAfter(
+            b.value,
             e.selectedFirstRange
           )), {
             isSelected: l,
-            start: b && l,
-            end: b && o
+            start: p && l,
+            end: p && s
           };
         }
-        const w = s.start ? e.calendar.isSame(s.start, n) : !1, t = s.end ? e.calendar.isSame(s.end, n) : !1;
+        const M = o.start ? e.calendar.isSame(o.start, n) : !1, t = o.end ? e.calendar.isSame(o.end, n) : !1;
         return {
-          isSelected: w || t,
-          start: w,
+          isSelected: M || t,
+          start: M,
           end: t
         };
       } else
@@ -174,9 +174,9 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
           end: !1
         };
     }, R = (a) => {
-      a.disabled || u("day-hover", a);
+      a.disabled || i("day-hover", a);
     }, V = (a) => {
-      if (!a.disabled && (u("day-click", {
+      if (!a.disabled && (i("day-click", {
         ...a,
         year: e.year,
         month: e.month
@@ -188,54 +188,54 @@ const ae = /* @__PURE__ */ F(te, [["__scopeId", "data-v-34b8b865"]]), ne = { cla
               e.month,
               a.dayInMonth
             );
-            e.calendar.isAfter(n, e.selectedFirstRange) || !e.unequalRange && e.calendar.isSame(n, e.selectedFirstRange) ? u("input", {
+            e.calendar.isAfter(n, e.selectedFirstRange) || !e.unequalRange && e.calendar.isSame(n, e.selectedFirstRange) ? i("input", {
               start: e.selectedFirstRange,
               end: n
-            }) : u("drag", n);
+            }) : i("drag", n);
           } else
-            u(
+            i(
               "drag",
               e.calendar.getDate(e.year, e.month, a.dayInMonth)
             );
         else
-          u(
+          i(
             "input",
             e.calendar.getDate(e.year, e.month, a.dayInMonth)
           );
     };
-    return (a, n) => (y(), p("div", {
-      class: z(["month-table-container", { single: e.monthCount === 1 }])
+    return (a, n) => (m(), g("div", {
+      class: N(["month-table-container", { single: e.monthCount === 1 }])
     }, [
-      h(a.$slots, "month-title", { startMonthDate: D.value }, () => [
-        _("div", ne, A(r.value), 1)
+      y(a.$slots, "month-title", { startMonthDate: f.value }, () => [
+        k("div", ne, z(r.value), 1)
       ], !0),
-      h(a.$slots, "week-header", {}, () => [
-        N(q(ae), { calendar: a.calendar }, null, 8, ["calendar"])
+      y(a.$slots, "week-header", {}, () => [
+        Y(W(ae), { calendar: a.calendar }, null, 8, ["calendar"])
       ], !0),
-      _("div", re, [
-        (y(!0), p(x, null, B(M.value, (s) => (y(), p("div", {
-          key: `empty-${s}`,
+      k("div", re, [
+        (m(!0), g(x, null, B(w.value, (o) => (m(), g("div", {
+          key: `empty-${o}`,
           class: "main-day-wrapper empty"
         }))), 128)),
-        (y(!0), p(x, null, B(i.value, (s) => (y(), p("div", {
-          key: s.dayInMonth,
+        (m(!0), g(x, null, B(c.value, (o) => (m(), g("div", {
+          key: o.dayInMonth,
           class: "main-day-wrapper",
-          onClick: (w) => V(s),
-          onMouseenter: (w) => R(s)
+          onClick: (M) => V(o),
+          onMouseenter: (M) => R(o)
         }, [
-          h(a.$slots, "day-container", {
-            day: s,
-            daysInMonth: f.value
+          y(a.$slots, "day-container", {
+            day: o,
+            daysInMonth: D.value
           }, () => [
-            _("div", {
-              class: z(["main-day-container", {
-                selected: s.isSelected,
-                between: s.isBetween,
-                disable: s.disabled
+            k("div", {
+              class: N(["main-day-container", {
+                selected: o.isSelected,
+                between: o.isBetween,
+                disable: o.disabled
               }])
             }, [
-              h(a.$slots, "day", { day: s }, () => [
-                Z(A(s.dayInMonth), 1)
+              y(a.$slots, "day", { day: o }, () => [
+                Z(z(o.dayInMonth), 1)
               ], !0)
             ], 2)
           ], !0)
@@ -261,117 +261,124 @@ const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { cla
     unequalRange: { type: Boolean }
   },
   emits: ["day-click", "day-hover", "drag", "page-change", "update:modelValue"],
-  setup(d, { expose: u, emit: e }) {
-    const r = d, f = v(() => r.currentCalendar ?? 0), c = v(() => r.calendars[f.value]), g = v({
+  setup(u, { expose: i, emit: e }) {
+    const r = u, D = v(() => r.currentCalendar ?? 0), d = v(() => r.calendars[D.value]), _ = v({
       get() {
         return r.modelValue;
       },
       set(t) {
         e("update:modelValue", t);
       }
-    }), S = v(() => r.monthCount ?? 1), m = I(c.value.currentYear), i = I(c.value.currentMonth);
-    W(c, (t) => {
-      m.value = t.currentYear, i.value = t.currentMonth;
+    }), I = v(() => r.monthCount ?? 1), h = S(d.value.currentYear), c = S(d.value.currentMonth);
+    q(d, (t) => {
+      h.value = t.currentYear, c.value = t.currentMonth;
     });
-    const M = I(null), k = I(null), D = I([]);
+    const w = S(null), b = S(null), f = S([]);
     j(() => {
-      for (let t = 0; t < S.value; t++) {
-        const l = i.value + t > 11 ? m.value + 1 : m.value, o = i.value + t < 12 ? i.value + t : (i.value + t) % 12;
-        D.value.push({ year: l, month: o });
+      for (let t = 0; t < I.value; t++) {
+        const l = c.value + t > 11 ? h.value + 1 : h.value, s = c.value + t < 12 ? c.value + t : (c.value + t) % 12;
+        f.value.push({ year: l, month: s });
       }
+    }), q(I, (t) => {
+      const l = [];
+      for (let s = 0; s < t; s++) {
+        const p = c.value + s > 11 ? h.value + 1 : h.value, A = c.value + s < 12 ? c.value + s : (c.value + s) % 12;
+        l.push({ year: p, month: A });
+      }
+      f.value = l;
     });
     const L = () => {
-      const t = D.value[D.value.length - 1], l = t.month === 11 ? t.year + 1 : t.year, o = (t.month + 1) % 12;
-      D.value.push({ year: l, month: o });
+      const t = f.value[f.value.length - 1], l = t.month === 11 ? t.year + 1 : t.year, s = (t.month + 1) % 12;
+      f.value.push({ year: l, month: s });
     }, P = () => {
-      const t = D.value[0], l = t.month === 0 ? t.year - 1 : t.year, o = t.month === 0 ? 11 : t.month - 1;
-      D.value.unshift({ year: l, month: o });
+      const t = f.value[0], l = t.month === 0 ? t.year - 1 : t.year, s = t.month === 0 ? 11 : t.month - 1;
+      f.value.unshift({ year: l, month: s });
     };
-    W(g, () => {
-      r.range && r.trackStart && !g.value.end && (M.value = g.value.start);
+    q(_, () => {
+      r.range && r.trackStart && !_.value.end && (w.value = _.value.start);
     });
     const C = () => {
-      i.value + 1 <= 11 ? i.value++ : (i.value = 0, m.value++), e("page-change", {
-        year: m.value,
-        month: i.value
+      c.value + 1 <= 11 ? c.value++ : (c.value = 0, h.value++), e("page-change", {
+        year: h.value,
+        month: c.value
       });
     }, R = () => {
-      i.value - 1 >= 0 ? i.value-- : (i.value = 11, m.value--), e("page-change", {
-        year: m.value,
-        month: i.value
+      c.value - 1 >= 0 ? c.value-- : (c.value = 11, h.value--), e("page-change", {
+        year: h.value,
+        month: c.value
       });
     }, V = (t) => {
       e("update:modelValue", {
         start: r.trackStart ? t : null,
         end: null
-      }), e("drag"), M.value = t;
+      }), e("drag"), w.value = t;
     }, a = (t) => {
-      M.value = null, e("update:modelValue", t);
+      w.value = null, e("update:modelValue", t);
     }, n = (t) => {
-      k.value = t, e(
+      b.value = t, e(
         "day-hover",
-        c.value.getDate(t.year, t.month, t.dayInMonth)
+        d.value.getDate(t.year, t.month, t.dayInMonth)
       );
-    }, s = (t) => {
-      e("day-click", t), w(t);
-    }, w = (t) => {
+    }, o = (t) => {
+      e("day-click", t), M(t);
+    }, M = (t) => {
       if (!r.onlyPick || !r.range)
         return;
-      const l = g.value || {}, o = c.value.getDate(t.year, t.month, t.dayInMonth);
-      r.onlyPick === "start" ? (l.end && c.value.isAfter(o, l.end) && (l.end = o), l.start = o) : r.onlyPick === "end" && (l.start && c.value.isAfter(l.start, o) && (l.start = o), l.end = o), e("update:modelValue", g.value);
+      const l = _.value || {}, s = d.value.getDate(t.year, t.month, t.dayInMonth);
+      r.onlyPick === "start" ? (l.end && d.value.isAfter(s, l.end) && (l.end = s), l.start = s) : r.onlyPick === "end" && (l.start && d.value.isAfter(l.start, s) && (l.start = s), l.end = s), e("update:modelValue", _.value);
     };
-    return u({
+    return i({
       prev: R,
       next: C,
       appendMonth: L,
       prependMonth: P
-    }), (t, l) => (y(), p("div", ce, [
-      N(q(X), {
+    }), (t, l) => (m(), g("div", ce, [
+      Y(W(X), {
         onNext: C,
         onPrev: R
       }, {
         "header-next-button": $(() => [
-          h(t.$slots, "header-next-button", {}, void 0, !0)
+          y(t.$slots, "header-next-button", {}, void 0, !0)
         ]),
         "header-prev-button": $(() => [
-          h(t.$slots, "header-prev-button", {}, void 0, !0)
+          y(t.$slots, "header-prev-button", {}, void 0, !0)
         ]),
         _: 3
       }),
-      _("div", de, [
-        (y(!0), p(x, null, B(D.value, (o) => (y(), G(q(le), {
-          key: o.year.toString() + o.month.toString(),
-          year: o.year,
-          month: o.month,
-          calendar: c.value,
-          value: g.value,
+      k("div", de, [
+        (m(!0), g(x, null, B(f.value, (s) => (m(), G(W(le), {
+          key: s.year.toString() + s.month.toString(),
+          year: s.year,
+          month: s.month,
+          calendar: d.value,
+          value: _.value,
           range: t.range,
-          "selected-first-range": M.value,
-          "current-hovered-day": k.value,
+          "selected-first-range": w.value,
+          "current-hovered-day": b.value,
           min: r.min,
           max: r.max,
           "only-pick-day": r.range && !!r.onlyPick,
           "unequal-range": r.unequalRange,
-          monthCount: S.value,
-          onDayClick: s,
+          monthCount: I.value,
+          onDayClick: o,
           onDayHover: n,
           onDrag: V,
           onInput: a
         }, {
-          "month-title": $(({ startMonthDate: b }) => [
-            h(t.$slots, "month-title", { startMonthDate: b }, void 0, !0)
+          "month-title": $(({ startMonthDate: p }) => [
+            y(t.$slots, "month-title", { startMonthDate: p }, void 0, !0)
           ]),
           "week-header": $(() => [
-            h(t.$slots, "week-header", {}, void 0, !0)
+            y(t.$slots, "week-header", {}, void 0, !0)
           ]),
-          "day-container": $(({ day: b, daysInMonth: T }) => [
-            h(t.$slots, "day-container", {
-              day: b,
-              daysInMonth: T
+          "day-container": $(({ day: p, daysInMonth: A }) => [
+            y(t.$slots, "day-container", {
+              day: p,
+              daysInMonth: A
             }, void 0, !0)
           ]),
-          day: $(({ day: b }) => [
-            h(t.$slots, "day", { day: b }, void 0, !0)
+          day: $(({ day: p }) => [
+            y(t.$slots, "day", { day: p }, void 0, !0)
           ]),
           _: 2
         }, 1032, ["year", "month", "calendar", "value", "range", "selected-first-range", "current-hovered-day", "min", "max", "only-pick-day", "unequal-range", "monthCount"]))), 128))
@@ -379,9 +386,9 @@ const le = /* @__PURE__ */ F(oe, [["__scopeId", "data-v-abb03691"]]), ce = { cla
     ]));
   }
 });
-const ie = /* @__PURE__ */ F(ue, [["__scopeId", "data-v-4efdf432"]]), he = {
-  install: (d) => {
-    d.component("VCustomizableDatePicker", ie);
+const ie = /* @__PURE__ */ F(ue, [["__scopeId", "data-v-a0648961"]]), he = {
+  install: (u) => {
+    u.component("VCustomizableDatePicker", ie);
   }
 };
 export {

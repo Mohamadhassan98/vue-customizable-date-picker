@@ -43,6 +43,20 @@ onMounted(() => {
   }
 });
 
+watch(monthCount, value => {
+  const tables: Page[] = [];
+  for (let monthIndex = 0; monthIndex < value; monthIndex++) {
+    const tableYear =
+        month.value + monthIndex > 11 ? year.value + 1 : year.value;
+    const tableMonth =
+        month.value + monthIndex < 12
+            ? month.value + monthIndex
+            : (month.value + monthIndex) % 12;
+    tables.push({year: tableYear, month: tableMonth});
+  }
+  dateTables.value = tables;
+});
+
 const appendMonth = () => {
   const last = dateTables.value[dateTables.value.length - 1];
   const year = last.month === 11 ? last.year + 1 : last.year;
