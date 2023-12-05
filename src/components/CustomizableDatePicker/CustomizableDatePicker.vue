@@ -85,6 +85,10 @@ const next = () => {
     month.value = 0;
     year.value++;
   }
+  dateTables.forEach(table => {
+    table.month = table.month + 1 <= 11 ? table.month + 1 : 0;
+    table.year = table.month + 1 <= 11 ? table.year : table.year + 1;
+  });
   emit("page-change", {
     year: year.value,
     month: month.value,
@@ -97,6 +101,10 @@ const prev = () => {
     month.value = 11;
     year.value--;
   }
+  dateTables.forEach(table => {
+    table.month = table.month - 1 >= 0 ? table.month - 1 : 11;
+    table.year = table.month - 1 >= 0 ? table.year : table.year - 1;
+  });
   emit("page-change", {
     year: year.value,
     month: month.value,
