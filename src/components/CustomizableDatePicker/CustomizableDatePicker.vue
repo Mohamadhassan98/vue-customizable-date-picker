@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, onMounted, reactive, ref, watch} from "vue";
 import {Day, InputValue, Page, RangeValue} from "../../interfaces/Calendar";
 import MainHeader from "../../components/MainHeader";
 import MonthTable from "../../components/MonthTable";
@@ -30,7 +30,7 @@ watch(calendar, (cal) => {
 });
 const selectedFirstRange = ref<Date | null>(null);
 const currentHoveredDay = ref<Day | null>(null);
-const dateTables = ref<Page[]>([]);
+const dateTables = reactive<Page[]>([]);
 onMounted(() => {
   for (let monthIndex = 0; monthIndex < monthCount.value; monthIndex++) {
     const tableYear =
@@ -39,12 +39,12 @@ onMounted(() => {
         month.value + monthIndex < 12
             ? month.value + monthIndex
             : (month.value + monthIndex) % 12;
-    dateTables.value.push({year: tableYear, month: tableMonth});
+    dateTables.push({year: tableYear, month: tableMonth});
   }
 });
 
 watch(monthCount, value => {
-  const tables: Page[] = [];
+  dateTables.length = 0;
   for (let monthIndex = 0; monthIndex < value; monthIndex++) {
     const tableYear =
         month.value + monthIndex > 11 ? year.value + 1 : year.value;
@@ -52,24 +52,23 @@ watch(monthCount, value => {
         month.value + monthIndex < 12
             ? month.value + monthIndex
             : (month.value + monthIndex) % 12;
-    tables.push({year: tableYear, month: tableMonth});
+    dateTables.push({year: tableYear, month: tableMonth});
   }
-  dateTables.value = tables;
 });
 
 const appendMonth = () => {
-  const last = dateTables.value[dateTables.value.length - 1];
+  const last = dateTables[dateTables.length - 1];
   const year = last.month === 11 ? last.year + 1 : last.year;
   const month = (last.month + 1) % 12;
-  dateTables.value.push({year, month});
+  dateTables.push({year, month});
   return { year, month };
 };
 
 const prependMonth = () => {
-  const first = dateTables.value[0];
+  const first = dateTables[0];
   const year = first.month === 0 ? first.year - 1 : first.year;
   const month = first.month === 0 ? 11 : first.month - 1;
-  dateTables.value.unshift({year, month});
+  dateTables.unshift({year, month});
   return { year, month };
 };
 
