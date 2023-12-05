@@ -31,7 +31,8 @@ watch(calendar, (cal) => {
 const selectedFirstRange = ref<Date | null>(null);
 const currentHoveredDay = ref<Day | null>(null);
 const dateTables = reactive<Page[]>([]);
-onMounted(() => {
+const initializeTables = () => {
+  dateTables.length = 0;
   for (let monthIndex = 0; monthIndex < monthCount.value; monthIndex++) {
     const tableYear =
         month.value + monthIndex > 11 ? year.value + 1 : year.value;
@@ -41,6 +42,9 @@ onMounted(() => {
             : (month.value + monthIndex) % 12;
     dateTables.push({year: tableYear, month: tableMonth});
   }
+};
+onMounted(() => {
+  initializeTables();
 });
 
 watch(monthCount, value => {
@@ -85,10 +89,7 @@ const next = () => {
     month.value = 0;
     year.value++;
   }
-  dateTables.forEach(table => {
-    table.month = table.month + 1 <= 11 ? table.month + 1 : 0;
-    table.year = table.month + 1 <= 11 ? table.year : table.year + 1;
-  });
+  initializeTables();
   emit("page-change", {
     year: year.value,
     month: month.value,
@@ -101,10 +102,7 @@ const prev = () => {
     month.value = 11;
     year.value--;
   }
-  dateTables.forEach(table => {
-    table.month = table.month - 1 >= 0 ? table.month - 1 : 11;
-    table.year = table.month - 1 >= 0 ? table.year : table.year - 1;
-  });
+  initializeTables();
   emit("page-change", {
     year: year.value,
     month: month.value,
